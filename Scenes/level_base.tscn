@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://deyievigwxtjp" path="res://Scripts/LevelBase.cs" id="1_ikmr1"]
 [ext_resource type="TileSet" uid="uid://byfsri4au068j" path="res://Resources/LevelTilesSet.tres" id="2_fhsqj"]
 [ext_resource type="PackedScene" uid="uid://b70khws674kuh" path="res://Scenes/player.tscn" id="3_38dla"]
+[ext_resource type="PackedScene" uid="uid://dnkcjpc2uviy4" path="res://Scenes/snail.tscn" id="4_n5e7m"]
 
 [node name="LevelBase" type="Node" unique_id=1374947956]
 script = ExtResource("1_ikmr1")
@@ -13,3 +14,14 @@ tile_set = ExtResource("2_fhsqj")
 
 [node name="Player" parent="." unique_id=478468213 instance=ExtResource("3_38dla")]
 position = Vector2(103, -32)
+
+[node name="Enemies" type="Node" parent="." unique_id=1557048728]
+
+[node name="Snail" parent="Enemies" unique_id=539967049 instance=ExtResource("4_n5e7m")]
+position = Vector2(298, -71)
+
+[node name="Snail2" parent="Enemies" unique_id=387815885 instance=ExtResource("4_n5e7m")]
+position = Vector2(201, -29)
+
+[node name="Snail3" parent="Enemies" unique_id=643052825 instance=ExtResource("4_n5e7m")]
+position = Vector2(-22, -157)

@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dnkcjpc2uviy4"]
+
+[ext_resource type="PackedScene" uid="uid://joomx5got7as" path="res://Scenes/enemy_base.tscn" id="1_qjijy"]
+[ext_resource type="Script" uid="uid://c2xvdod2l21ks" path="res://Snail.cs" id="2_fnba0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qjijy"]
+radius = 9.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjijy"]
+size = Vector2(35.005, 24.22)
+
+[node name="Snail" unique_id=539967049 node_paths=PackedStringArray("_raycastDetection") instance=ExtResource("1_qjijy")]
+script = ExtResource("2_fnba0")
+_raycastDetection = NodePath("RaycastDetection")
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=614818613]
+animation = &"snail"
+autoplay = "snail"
+frame = 0
+frame_progress = 0.0
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=890878473]
+position = Vector2(1, 2)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_qjijy")
+
+[node name="HitBox" parent="." index="3" unique_id=325961534]
+position = Vector2(2, 0)
+Shape = SubResource("RectangleShape2D_qjijy")
+
+[node name="RaycastDetection" type="RayCast2D" parent="." index="4" unique_id=786862877]
+position = Vector2(-22, 0)
+target_position = Vector2(0, 30)
