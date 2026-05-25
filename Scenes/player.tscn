@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://cskphpnaqurpy" path="res://Assets/player/player.png" id="1_v0iea"]
 [ext_resource type="PackedScene" uid="uid://v48fp7lvbuuv" path="res://Scenes/player_cam.tscn" id="2_cvnsp"]
 [ext_resource type="AudioStream" uid="uid://ynpge2ig41l0" path="res://Assets/sound/jump.wav" id="4_vgqql"]
+[ext_resource type="PackedScene" uid="uid://b8n7ayla4a2bw" path="res://Scenes/hit_box.tscn" id="5_fkybt"]
+[ext_resource type="PackedScene" uid="uid://b5epy0memqbx8" path="res://Scenes/shooter.tscn" id="6_3smsa"]
+[ext_resource type="PackedScene" uid="uid://bdsw6ue3jwcbk" path="res://Scenes/player_bullet.tscn" id="6_x3wgy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v0iea"]
 radius = 8.0
@@ -193,11 +196,14 @@ states/hurt/node = SubResource("AnimationNodeAnimation_x3wgy")
 states/hurt/position = Vector2(204, 229)
 transitions = ["Ground", "Air", SubResource("AnimationNodeStateMachineTransition_fkybt"), "Air", "Ground", SubResource("AnimationNodeStateMachineTransition_gymyn"), "Start", "Ground", SubResource("AnimationNodeStateMachineTransition_pu2lt")]
 
-[node name="Player" type="CharacterBody2D" unique_id=478468213 node_paths=PackedStringArray("_jumpSound", "_sprite")]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x3wgy"]
+
+[node name="Player" type="CharacterBody2D" unique_id=478468213 node_paths=PackedStringArray("_jumpSound", "_sprite", "_shooter")]
 collision_layer = 0
 script = ExtResource("1_6t5aa")
 _jumpSound = NodePath("Sound")
 _sprite = NodePath("Sprite2D")
+_shooter = NodePath("Shooter")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1176097695]
 texture = ExtResource("1_v0iea")
@@ -222,3 +228,13 @@ autoplay = &"idle"
 tree_root = SubResource("AnimationNodeStateMachine_vgqql")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="HitBox" parent="." unique_id=325961534 instance=ExtResource("5_fkybt")]
+position = Vector2(-1, 2)
+collision_layer = 4
+collision_mask = 10
+Shape = SubResource("CapsuleShape2D_x3wgy")
+
+[node name="Shooter" parent="." unique_id=1229915240 instance=ExtResource("6_3smsa")]
+_bullet = ExtResource("6_x3wgy")
+_speed = 100.0

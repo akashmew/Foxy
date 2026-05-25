@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://lk6qbtic88g5"]
+
+[ext_resource type="PackedScene" uid="uid://joomx5got7as" path="res://Scenes/enemy_base.tscn" id="1_0dq4m"]
+[ext_resource type="Script" uid="uid://brudmas48tpti" path="res://Scripts/Eagle.cs" id="2_fugfm"]
+[ext_resource type="PackedScene" uid="uid://b5epy0memqbx8" path="res://Scenes/shooter.tscn" id="3_26r13"]
+[ext_resource type="PackedScene" uid="uid://cuvo7pu7oqtap" path="res://Scenes/enemy_bullet.tscn" id="4_uobbw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fugfm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_26r13"]
+size = Vector2(24.95, 27.575)
+
+[node name="Eagle" unique_id=539967049 node_paths=PackedStringArray("_playerDetection", "_shooter") instance=ExtResource("1_0dq4m")]
+position = Vector2(0, 0)
+collision_mask = 0
+script = ExtResource("2_fugfm")
+_playerDetection = NodePath("PlayerDetect")
+_shooter = NodePath("Shooter")
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=614818613]
+animation = &"eagle"
+frame = 0
+frame_progress = 0.0
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=890878473]
+shape = SubResource("CircleShape2D_fugfm")
+
+[node name="HitBox" parent="." index="3" unique_id=325961534]
+position = Vector2(-1, 0)
+Shape = SubResource("RectangleShape2D_26r13")
+
+[node name="PlayerDetect" type="RayCast2D" parent="." index="5" unique_id=1300093517]
+target_position = Vector2(0, 250)
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Shooter" parent="." index="6" unique_id=1229915240 instance=ExtResource("3_26r13")]
+_bullet = ExtResource("4_uobbw")
+_speed = 100.0

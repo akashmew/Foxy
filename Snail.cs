@@ -9,8 +9,7 @@ public partial class Snail : EnemyBase
     private float timeElapsed = 0.0f;
     public override void _PhysicsProcess(double delta)
     {
-        Vector2 velocity = Velocity;
-        velocity.Y += _gravity * (float)delta;
+        Vector2 velocity = ApplyGravity(delta);
 
         if(IsOnFloor())
         {
@@ -26,15 +25,20 @@ public partial class Snail : EnemyBase
         FlipMe();
     }
 
-    private void FlipMe()
+    public override void _Ready()
+    {
+        
+    }
+
+    protected override void FlipMe()
     {
         if (!_raycastDetection.IsColliding())
         {
             _animatedSprite.FlipH = !_animatedSprite.FlipH;
             _raycastDetection.Position = new Vector2(-_raycastDetection.Position.X, _raycastDetection.Position.Y);
         }
-           
-        
+
+
 
     }
 }

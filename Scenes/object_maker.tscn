@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://drpkegwoqm5ch"]
+
+[ext_resource type="Script" uid="uid://bedw4y5ly25vg" path="res://Scripts/ObjectMaker.cs" id="1_ki31e"]
+[ext_resource type="PackedScene" uid="uid://dj0jh7gasn34j" path="res://Scenes/explosion.tscn" id="2_kbnl5"]
+
+[node name="ObjectMaker" type="Node" unique_id=2114104206]
+script = ExtResource("1_ki31e")
+_explosionScene = ExtResource("2_kbnl5")

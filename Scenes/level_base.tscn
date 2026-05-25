@@ -3,7 +3,10 @@
 [ext_resource type="Script" uid="uid://deyievigwxtjp" path="res://Scripts/LevelBase.cs" id="1_ikmr1"]
 [ext_resource type="TileSet" uid="uid://byfsri4au068j" path="res://Resources/LevelTilesSet.tres" id="2_fhsqj"]
 [ext_resource type="PackedScene" uid="uid://b70khws674kuh" path="res://Scenes/player.tscn" id="3_38dla"]
-[ext_resource type="PackedScene" uid="uid://dnkcjpc2uviy4" path="res://Scenes/snail.tscn" id="4_n5e7m"]
+[ext_resource type="PackedScene" uid="uid://lk6qbtic88g5" path="res://Scenes/eagle.tscn" id="4_n5e7m"]
+[ext_resource type="PackedScene" uid="uid://v61febcj0hx1" path="res://Scenes/frog.tscn" id="5_3ne40"]
+[ext_resource type="PackedScene" uid="uid://dnkcjpc2uviy4" path="res://Scenes/snail.tscn" id="5_e3kpl"]
+[ext_resource type="PackedScene" uid="uid://drpkegwoqm5ch" path="res://Scenes/object_maker.tscn" id="6_e3kpl"]
 
 [node name="LevelBase" type="Node" unique_id=1374947956]
 script = ExtResource("1_ikmr1")
@@ -17,11 +20,13 @@ position = Vector2(103, -32)
 
 [node name="Enemies" type="Node" parent="." unique_id=1557048728]
 
-[node name="Snail" parent="Enemies" unique_id=539967049 instance=ExtResource("4_n5e7m")]
-position = Vector2(298, -71)
+[node name="Eagle" parent="Enemies" unique_id=539967049 instance=ExtResource("4_n5e7m")]
+position = Vector2(153, -173)
 
-[node name="Snail2" parent="Enemies" unique_id=387815885 instance=ExtResource("4_n5e7m")]
-position = Vector2(201, -29)
+[node name="Frog" parent="Enemies" unique_id=490054968 instance=ExtResource("5_3ne40")]
+position = Vector2(-27, -29)
 
-[node name="Snail3" parent="Enemies" unique_id=643052825 instance=ExtResource("4_n5e7m")]
-position = Vector2(-22, -157)
+[node name="Snail" parent="Enemies" unique_id=1667569 instance=ExtResource("5_e3kpl")]
+position = Vector2(361, -27)
+
+[node name="ObjectMaker" parent="." unique_id=2114104206 instance=ExtResource("6_e3kpl")]

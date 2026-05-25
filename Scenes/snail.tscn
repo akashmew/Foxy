@@ -4,12 +4,14 @@
 [ext_resource type="Script" uid="uid://c2xvdod2l21ks" path="res://Snail.cs" id="2_fnba0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qjijy"]
-radius = 9.0
+radius = 7.666667
+height = 26.666666
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qjijy"]
-size = Vector2(35.005, 24.22)
+size = Vector2(27.745, 21.24)
 
 [node name="Snail" unique_id=539967049 node_paths=PackedStringArray("_raycastDetection") instance=ExtResource("1_qjijy")]
+position = Vector2(0, 0)
 script = ExtResource("2_fnba0")
 _raycastDetection = NodePath("RaycastDetection")
 
@@ -20,12 +22,12 @@ frame = 0
 frame_progress = 0.0
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=890878473]
-position = Vector2(1, 2)
+position = Vector2(1.3333334, 1.3333333)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_qjijy")
 
 [node name="HitBox" parent="." index="3" unique_id=325961534]
-position = Vector2(2, 0)
+position = Vector2(1, 0)
 Shape = SubResource("RectangleShape2D_qjijy")
 
 [node name="RaycastDetection" type="RayCast2D" parent="." index="4" unique_id=786862877]

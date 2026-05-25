@@ -18,6 +18,7 @@ public partial class Player : CharacterBody2D
 
 	[Export] AudioStreamPlayer2D _jumpSound;
 	[Export] Sprite2D _sprite;
+	[Export] Shooter _shooter;
 
     public override void _UnhandledInput(InputEvent @event)
 	{
@@ -26,8 +27,17 @@ public partial class Player : CharacterBody2D
 			_isJumped = true;
 
 		}
+		if (@event.IsActionPressed("shoot"))
+		{
+			Vector2 direction = _sprite.FlipH ? Vector2.Left : Vector2.Right;
+			_shooter.Shoot(direction);
+		}
 	}
 
+    public override void _EnterTree()
+    {
+		AddToGroup(GameConstants.GROUP_PLAYER);
+    }
 
 
 	public override void _Ready()

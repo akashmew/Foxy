@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://v61febcj0hx1"]
+
+[ext_resource type="PackedScene" uid="uid://joomx5got7as" path="res://Scenes/enemy_base.tscn" id="1_85unm"]
+[ext_resource type="Script" uid="uid://cb5d54gopx7q5" path="res://Scripts/Frog.cs" id="2_4ygq6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_85unm"]
+radius = 9.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_85unm"]
+size = Vector2(20.825, 20)
+
+[node name="Frog" unique_id=539967049 instance=ExtResource("1_85unm")]
+position = Vector2(0, 0)
+script = ExtResource("2_4ygq6")
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=614818613]
+animation = &"frog_idle"
+autoplay = "frog_idle"
+frame = 0
+frame_progress = 0.0
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=890878473]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_85unm")
+
+[node name="HitBox" parent="." index="3" unique_id=325961534]
+Shape = SubResource("RectangleShape2D_85unm")
