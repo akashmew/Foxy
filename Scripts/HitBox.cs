@@ -25,6 +25,12 @@ public partial class HitBox : Area2D
 		_collisionShape.Shape = _shape;
     }
 
+	public void Activate(bool isOn)
+	{
+		SetDeferred(Area2D.PropertyName.Monitoring, isOn);
+		SetDeferred(Area2D.PropertyName.Monitorable, isOn);
+	}
+
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{

@@ -7,11 +7,16 @@ public partial class Bullets : Area2D
 	private Vector2 _direction = Vector2.Right;
 	public override void _Ready()
 	{
-
+		AreaEntered += DestroyBullet;
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _PhysicsProcess(double delta)
+    private void DestroyBullet(Area2D area)
+    {
+		QueueFree();
+    }
+
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _PhysicsProcess(double delta)
 	{
 		Position += _direction * (float)delta;
 	}

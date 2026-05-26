@@ -27,7 +27,7 @@ public partial class Snail : EnemyBase
 
     public override void _Ready()
     {
-        
+        base._Ready();      
     }
 
     protected override void FlipMe()

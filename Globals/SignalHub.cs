@@ -7,6 +7,7 @@ public partial class SignalHub : Node
 
 	[Signal] public delegate void OnCreateBulletEventHandler(Vector2 pos, Vector2 dir, float speed, PackedScene scene);
 	[Signal] public delegate void OnExplosionEventHandler(Vector2 pos);
+	[Signal] public delegate void OnEnemyKilledEventHandler(Vector2 pos);
 	public override void _Ready()
 	{
 		Instance = this;
@@ -16,9 +17,14 @@ public partial class SignalHub : Node
 	{
 		Instance.EmitSignal(SignalName.OnCreateBullet, pos, dir, speed, scene);
 	}
-	
+
 	public static void CreateExplosion(Vector2 pos)
 	{
 		Instance.EmitSignal(SignalName.OnExplosion, pos);
+	}
+
+	public static void CreatePickups(Vector2 pos)
+	{
+		Instance.EmitSignal(SignalName.OnEnemyKilled, pos);
 	}
 }

@@ -31,7 +31,9 @@ public partial class EnemyBase : CharacterBody2D
 
     private void Explode(Area2D area)
     {
+      
         SignalHub.CreateExplosion(area.GlobalPosition);
+        SignalHub.CreatePickups(area.GlobalPosition);
         QueueFree();
     }
 
