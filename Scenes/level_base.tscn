@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dnkcjpc2uviy4" path="res://Scenes/snail.tscn" id="5_e3kpl"]
 [ext_resource type="PackedScene" uid="uid://drpkegwoqm5ch" path="res://Scenes/object_maker.tscn" id="6_e3kpl"]
 [ext_resource type="PackedScene" uid="uid://pta18h5vufmj" path="res://Scenes/boss.tscn" id="8_a8nbr"]
+[ext_resource type="PackedScene" uid="uid://cxwha4v3ww7k4" path="res://Scenes/checkpoint.tscn" id="9_lnrhr"]
+[ext_resource type="PackedScene" uid="uid://caepnuvgoiqxr" path="res://Scenes/game_hud.tscn" id="10_qn2pf"]
 
 [node name="LevelBase" type="Node" unique_id=1374947956]
 script = ExtResource("1_ikmr1")
@@ -36,5 +38,13 @@ position = Vector2(361, -27)
 
 [node name="Boss" parent="." unique_id=544409368 instance=ExtResource("8_a8nbr")]
 position = Vector2(890, -20)
+
+[node name="Checkpoint" parent="." unique_id=1971755582 instance=ExtResource("9_lnrhr")]
+position = Vector2(697, -18)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1292244812]
+process_mode = 3
+
+[node name="GameHud" parent="CanvasLayer" unique_id=600812694 instance=ExtResource("10_qn2pf")]
 
 [editable path="Boss"]

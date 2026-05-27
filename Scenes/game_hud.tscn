@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://caepnuvgoiqxr"]
+
+[ext_resource type="Script" uid="uid://ce2h1sisctdgv" path="res://Scripts/GameHud.cs" id="1_jgq5c"]
+[ext_resource type="LabelSettings" uid="uid://ds4fdp5eiea03" path="res://Resources/LevlLabel48.tres" id="1_qmln0"]
+[ext_resource type="Texture2D" uid="uid://eybdm3yl11ne" path="res://Assets/items/pixel heart 2.png" id="2_qecdm"]
+[ext_resource type="LabelSettings" uid="uid://c7g17vwkvvs1h" path="res://Resources/GameOver74White.tres" id="3_hsjaf"]
+[ext_resource type="LabelSettings" uid="uid://d032h1vx2frdt" path="res://Resources/TitleLabelPurple74.tres" id="3_pef4c"]
+[ext_resource type="AudioStream" uid="uid://whr77i38n3qf" path="res://Assets/sound/game_over.ogg" id="5_6tc0p"]
+[ext_resource type="AudioStream" uid="uid://cfnkywapkmqrn" path="res://Assets/sound/you_win.ogg" id="6_jgq5c"]
+
+[node name="GameHud" type="Control" unique_id=600812694 node_paths=PackedStringArray("_colorRect", "_gameOverLabel", "_gameOverSfx", "_levelCompletedSfx", "_gameOverTimer")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_jgq5c")
+_colorRect = NodePath("ColorRect")
+_gameOverLabel = NodePath("ColorRect/VBoxContainer/GameOverLabel")
+_gameOverSfx = NodePath("GameOverSound")
+_levelCompletedSfx = NodePath("YouWinSound")
+_gameOverTimer = NodePath("CompleteTimer")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1315180196]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1306376418]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 32
+
+[node name="LevelLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=593126]
+layout_mode = 2
+text = "LV:1"
+label_settings = ExtResource("1_qmln0")
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1217320227]
+layout_mode = 2
+text = "00000"
+label_settings = ExtResource("1_qmln0")
+
+[node name="HBHearts" type="HBoxContainer" parent="MarginContainer" unique_id=1233342933]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="H1" type="TextureRect" parent="MarginContainer/HBHearts" unique_id=1938611449]
+layout_mode = 2
+texture = ExtResource("2_qecdm")
+stretch_mode = 4
+
+[node name="H2" type="TextureRect" parent="MarginContainer/HBHearts" unique_id=405292653]
+layout_mode = 2
+texture = ExtResource("2_qecdm")
+stretch_mode = 4
+
+[node name="H3" type="TextureRect" parent="MarginContainer/HBHearts" unique_id=555957161]
+layout_mode = 2
+texture = ExtResource("2_qecdm")
+stretch_mode = 4
+
+[node name="H4" type="TextureRect" parent="MarginContainer/HBHearts" unique_id=1944883985]
+layout_mode = 2
+texture = ExtResource("2_qecdm")
+stretch_mode = 4
+
+[node name="H5" type="TextureRect" parent="MarginContainer/HBHearts" unique_id=1789300331]
+layout_mode = 2
+texture = ExtResource("2_qecdm")
+stretch_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=110746409]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.27308044, 0.11551894, 0.38162273, 0.8117647)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect" unique_id=933096573]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverLabel" type="Label" parent="ColorRect/VBoxContainer" unique_id=649564286]
+layout_mode = 2
+text = "Game Over"
+label_settings = ExtResource("3_hsjaf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="ColorRect/VBoxContainer" unique_id=319992990]
+layout_mode = 2
+text = "Press Shoot"
+label_settings = ExtResource("3_pef4c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverSound" type="AudioStreamPlayer" parent="." unique_id=1465406735]
+stream = ExtResource("5_6tc0p")
+volume_db = -11.709
+
+[node name="YouWinSound" type="AudioStreamPlayer" parent="." unique_id=605199037]
+stream = ExtResource("6_jgq5c")
+volume_db = -11.02
+
+[node name="CompleteTimer" type="Timer" parent="." unique_id=476150859]
+one_shot = true

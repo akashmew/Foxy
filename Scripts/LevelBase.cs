@@ -3,8 +3,14 @@ using System;
 
 public partial class LevelBase : Node
 {
-  
-  
+
+  public override void _Ready()
+  {
+    SignalHub.Instance.OnLevelCompleted += OnLevelComplete;
+  }
+
+
+
   // Called when the node enters the scene tree for the first time.
   public override void _UnhandledInput(InputEvent @event)
   {
@@ -17,8 +23,12 @@ public partial class LevelBase : Node
     {
 
       //SignalHub.CreateBullet(new Vector2(150, -50), new Vector2(1, 1), 50f, _bulletBase);
-     
+
     }
+  }
+   private void OnLevelComplete()
+  {
+    GD.Print("Level Completed");
   }
 
 }

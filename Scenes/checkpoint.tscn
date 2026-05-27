@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cxwha4v3ww7k4"]
 
+[ext_resource type="Script" uid="uid://cnd8vw3ryybqc" path="res://Scripts/Checkpoint.cs" id="1_e75gc"]
 [ext_resource type="Texture2D" uid="uid://bj63p6ntw3m6b" path="res://Assets/items/checkpoint.png" id="1_lbcco"]
 [ext_resource type="AudioStream" uid="uid://dat7rt7xi1df3" path="res://Assets/sound/checkpoint.wav" id="2_2cwi7"]
 
@@ -131,10 +132,12 @@ states/open/node = SubResource("AnimationNodeAnimation_i1pff")
 states/open/position = Vector2(401, 83)
 transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_opoc8"), "RESET", "open", SubResource("AnimationNodeStateMachineTransition_l0c30"), "open", "flap", SubResource("AnimationNodeStateMachineTransition_2cwi7")]
 
-[node name="Checkpoint" type="Area2D" unique_id=1971755582]
+[node name="Checkpoint" type="Area2D" unique_id=1971755582 node_paths=PackedStringArray("_animationTree")]
 collision_layer = 0
 collision_mask = 4
 monitoring = false
+script = ExtResource("1_e75gc")
+_animationTree = NodePath("AnimationTree")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=213319839]
 position = Vector2(6.5, -23.75)
@@ -142,6 +145,7 @@ shape = SubResource("RectangleShape2D_2cwi7")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=21527241]
 visible = false
+position = Vector2(14, -32)
 texture = ExtResource("1_lbcco")
 hframes = 26
 vframes = 3
@@ -156,4 +160,4 @@ libraries/ = SubResource("AnimationLibrary_e75gc")
 deterministic = false
 tree_root = SubResource("AnimationNodeStateMachine_w8ggu")
 anim_player = NodePath("../AnimationPlayer")
-parameters/conditions/bossKilled = true
+parameters/conditions/bossKilled = false

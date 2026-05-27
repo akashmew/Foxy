@@ -55,6 +55,7 @@ public partial class Boss : Node2D
 
 	private void Die()
 	{
+		SignalHub.SpawnCheckPointFlag();
 		QueueFree();
 	}
 	private void TakeDamage()
