@@ -9,7 +9,7 @@ public partial class Boss : Node2D
 	[Export] private Node2D _visuals;
 	[Export] private HitBox _hitBox;
 	[Export] private float _lives;
-	[Export] private float _points;
+	[Export] private int _points=20;
 	protected Player _playerRef;
 	private Vector2 _visualsPos;
 
@@ -56,6 +56,7 @@ public partial class Boss : Node2D
 	private void Die()
 	{
 		SignalHub.SpawnCheckPointFlag();
+		SignalHub.EmitPointsScored(_points);
 		QueueFree();
 	}
 	private void TakeDamage()
@@ -67,9 +68,10 @@ public partial class Boss : Node2D
 		ReduceLife();
 	}
 
-    private void OnHitBoxAreaEntered(Area2D area)
+	private void OnHitBoxAreaEntered(Area2D area)
 	{
 		TakeDamage();
+		
 	}
 
     private void OnAreaEntered(Area2D area)

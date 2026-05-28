@@ -10,6 +10,15 @@
 [ext_resource type="PackedScene" uid="uid://pta18h5vufmj" path="res://Scenes/boss.tscn" id="8_a8nbr"]
 [ext_resource type="PackedScene" uid="uid://cxwha4v3ww7k4" path="res://Scenes/checkpoint.tscn" id="9_lnrhr"]
 [ext_resource type="PackedScene" uid="uid://caepnuvgoiqxr" path="res://Scenes/game_hud.tscn" id="10_qn2pf"]
+[ext_resource type="PackedScene" uid="uid://dvo28c5pehthc" path="res://Scenes/ball_spikes.tscn" id="11_xnoyx"]
+[ext_resource type="PackedScene" uid="uid://csnwc7rbq1j3v" path="res://Scenes/floor_spikes.tscn" id="12_3bmkt"]
+[ext_resource type="PackedScene" uid="uid://bf7w821d0n16w" path="res://Scenes/moving_platform.tscn" id="13_16v77"]
+
+[sub_resource type="Curve2D" id="Curve2D_qn2pf"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -3, -28, 0, 0, 0, 0, 111, -185, 0, 0, 0, 0, 167, -97, 0, 0, 0, 0, 251, -92, 0, 0, 0, 0, -3, -28)
+}
+point_count = 5
 
 [node name="LevelBase" type="Node" unique_id=1374947956]
 script = ExtResource("1_ikmr1")
@@ -46,5 +55,31 @@ position = Vector2(697, -18)
 process_mode = 3
 
 [node name="GameHud" parent="CanvasLayer" unique_id=600812694 instance=ExtResource("10_qn2pf")]
+
+[node name="BallSpikes" type="Node" parent="." unique_id=1514925563]
+
+[node name="Path2D" type="Path2D" parent="BallSpikes" unique_id=2081322308]
+position = Vector2(-97, 48)
+curve = SubResource("Curve2D_qn2pf")
+
+[node name="BallSpikes" parent="BallSpikes/Path2D" unique_id=361109871 instance=ExtResource("11_xnoyx")]
+position = Vector2(-3, -28)
+
+[node name="floorSpikes" type="Node" parent="." unique_id=1459577963]
+
+[node name="FloorSpikes" parent="floorSpikes" unique_id=1776167698 instance=ExtResource("12_3bmkt")]
+position = Vector2(227, -62)
+
+[node name="MovingPlatform" type="Node" parent="." unique_id=1924660954]
+
+[node name="MovingPlatform" parent="MovingPlatform" unique_id=485482144 node_paths=PackedStringArray("_from", "_to") instance=ExtResource("13_16v77")]
+_from = NodePath("../Marker2D")
+_to = NodePath("../Marker2D2")
+
+[node name="Marker2D" type="Marker2D" parent="MovingPlatform" unique_id=1021780519]
+position = Vector2(415, -50)
+
+[node name="Marker2D2" type="Marker2D" parent="MovingPlatform" unique_id=1331610528]
+position = Vector2(415, -161)
 
 [editable path="Boss"]

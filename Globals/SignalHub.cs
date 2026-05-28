@@ -9,7 +9,9 @@ public partial class SignalHub : Node
 	[Signal] public delegate void OnExplosionEventHandler(Vector2 pos);
 	[Signal] public delegate void OnEnemyKilledEventHandler(Vector2 pos);
 	[Signal] public delegate void OnBossKilledEventHandler();
-	[Signal] public delegate void OnLevelCompletedEventHandler();
+	[Signal] public delegate void OnLevelCompletedEventHandler(bool isWin);
+	[Signal] public delegate void OnPointsScoredEventHandler(int points);
+	[Signal] public delegate void OnReduceLivesEventHandler(int lives, bool shake);
 	public override void _Ready()
 	{
 		Instance = this;
@@ -35,8 +37,18 @@ public partial class SignalHub : Node
 		Instance.EmitSignal(SignalName.OnBossKilled);
 	}
 
-	public static void CompletedLevel()
+	public static void CompletedLevel(bool isWin)
 	{
-		Instance.EmitSignal(SignalName.OnLevelCompleted);
+		Instance.EmitSignal(SignalName.OnLevelCompleted,isWin);
+	}
+
+	public static void EmitPointsScored(int points)
+	{
+		Instance.EmitSignal(SignalName.OnPointsScored, points);
+	}
+
+	public static void ReduceLife(int lives, bool shake)
+	{
+		Instance.EmitSignal(SignalName.OnReduceLives, lives, shake);
 	}
 }

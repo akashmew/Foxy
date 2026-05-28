@@ -4,10 +4,7 @@ using System;
 public partial class LevelBase : Node
 {
 
-  public override void _Ready()
-  {
-    SignalHub.Instance.OnLevelCompleted += OnLevelComplete;
-  }
+ 
 
 
 
@@ -26,9 +23,6 @@ public partial class LevelBase : Node
 
     }
   }
-   private void OnLevelComplete()
-  {
-    GD.Print("Level Completed");
-  }
+ 
 
 }

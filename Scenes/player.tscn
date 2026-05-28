@@ -258,6 +258,7 @@ _sprite = NodePath("Sprite2D")
 _shooter = NodePath("Shooter")
 _hitbox = NodePath("HitBox")
 _hurtTimer = NodePath("HurtTimer")
+_lives = 3
 _invinciblePlayer = NodePath("AnimationPlayer2")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1176097695]

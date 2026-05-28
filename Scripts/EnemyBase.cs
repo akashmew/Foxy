@@ -11,6 +11,7 @@ public partial class EnemyBase : CharacterBody2D
 
     [Export] protected float _FallOffY = 200f;
     [Export] protected Timer _attackTimer;
+    [Export] private int _points = 5;
 
     protected float _gravity = 800f;
 
@@ -31,7 +32,7 @@ public partial class EnemyBase : CharacterBody2D
 
     private void Explode(Area2D area)
     {
-      
+        SignalHub.EmitPointsScored(_points);
         SignalHub.CreateExplosion(area.GlobalPosition);
         SignalHub.CreatePickups(area.GlobalPosition);
         QueueFree();

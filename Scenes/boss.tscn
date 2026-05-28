@@ -216,7 +216,6 @@ _shooter = NodePath("Visuals/Shooter")
 _visuals = NodePath("Visuals")
 _hitBox = NodePath("Visuals/HitBox")
 _lives = 2.0
-_points = 5.0
 
 [node name="Visuals" type="Node2D" parent="." unique_id=959470773]
 position = Vector2(0, -37)

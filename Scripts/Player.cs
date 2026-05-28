@@ -6,6 +6,7 @@ public partial class Player : CharacterBody2D
 	// Called when the node enters the scene tree for the first time.
 	private const float GRAVITY = 690.0f;
 	private readonly Vector2 HURT_JUMP_VEL = new Vector2(0f, -130f);
+	private readonly float _FallOffY = 300f;
 
 	private float _movementSpeed = 120.0f;
 	private float _jumpSpeed = -270.0f;
@@ -26,6 +27,7 @@ public partial class Player : CharacterBody2D
 	[Export] Shooter _shooter;
 	[Export] HitBox _hitbox;
 	[Export] Timer _hurtTimer;
+	[Export] int _lives=5;
 	[Export] AnimationPlayer _invinciblePlayer;
 
 	public override void _UnhandledInput(InputEvent @event)
@@ -51,12 +53,17 @@ public partial class Player : CharacterBody2D
 	public override void _Ready()
 	{
 		_hitbox.AreaEntered += OnAreaEntered;
+		//_hitbox.AreaExited += OnAreExited;
 		_hurtTimer.Timeout += ResetPlayer;
 		_invinciblePlayer.AnimationFinished += OnInvAnimFinished;
+		CallDeferred(nameof(LateEmit));
 	}
 
-
-
+   
+    private void LateEmit()
+	{
+		SignalHub.ReduceLife(_lives, false);
+	}
 
 
 
@@ -75,6 +82,7 @@ public partial class Player : CharacterBody2D
 		Velocity = velocity;
 
 		MoveAndSlide();
+		FallenOff();
 	}
 
 	private Vector2 GetInput(Vector2 velocity)
@@ -113,11 +121,19 @@ public partial class Player : CharacterBody2D
 		Velocity = HURT_JUMP_VEL;
 
 	}
+
+	private void Reduction(int reduction)
+	{
+		_lives -= reduction;
+		SignalHub.ReduceLife(_lives, false);
+	}
 	private void ApplyHit()
 	{
 		if (_isInvicible) return;
 		GoInvincible();
 		ApplyHurt();
+		Reduction(1);
+		
 
 	}
 
@@ -132,7 +148,19 @@ public partial class Player : CharacterBody2D
 		CallDeferred(nameof(ApplyHit));
 
 	}
+	
+	
 
+
+ private void FallenOff()
+	{
+		if (GlobalPosition.Y > _FallOffY)
+		{
+			Reduction(_lives);
+			CallDeferred(MethodName.QueueFree);
+			SignalHub.CompletedLevel(false);
+		}
+	}
 	public void GoInvincible()
 	{
 		if (_isInvicible) return;

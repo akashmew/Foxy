@@ -5,7 +5,7 @@ public partial class FruitPickup : Area2D
 {
 	[Export] AnimatedSprite2D _animatedSprite;
 	[Export] AudioStreamPlayer2D _pickupSfx;
-	[Export] private float _points = 2;
+	[Export] private int _points = 2;
 	public override void _Ready()
 	{
 		PlayRandomAnimation();
@@ -25,6 +25,7 @@ public partial class FruitPickup : Area2D
 	}
 	private void OnAreaEntered(Area2D area)
 	{
+		SignalHub.EmitPointsScored(_points);
 		_pickupSfx.Play();
 		Hide();
 		AreaEntered -= OnAreaEntered;
