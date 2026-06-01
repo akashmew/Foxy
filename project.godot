@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="FoxyAntics"
-run/main_scene="uid://do2076ldjj1oj"
+run/main_scene="uid://b2tlmnvxitcsr"
 config/features=PackedStringArray("4.6", "C#", "Mobile")
 config/icon="res://icon.svg"
 

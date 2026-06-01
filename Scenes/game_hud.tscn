@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://whr77i38n3qf" path="res://Assets/sound/game_over.ogg" id="5_6tc0p"]
 [ext_resource type="AudioStream" uid="uid://cfnkywapkmqrn" path="res://Assets/sound/you_win.ogg" id="6_jgq5c"]
 
-[node name="GameHud" type="Control" unique_id=600812694 node_paths=PackedStringArray("_colorRect", "_gameOverLabel", "_scoreLabel", "_gameOverSfx", "_levelCompletedSfx", "_hbContainer", "_gameOverTimer")]
+[node name="GameHud" type="Control" unique_id=600812694 node_paths=PackedStringArray("_colorRect", "_gameOverLabel", "_levelLabel", "_scoreLabel", "_gameOverSfx", "_levelCompletedSfx", "_hbContainer", "_gameOverTimer")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -20,6 +20,7 @@ mouse_filter = 1
 script = ExtResource("1_jgq5c")
 _colorRect = NodePath("ColorRect")
 _gameOverLabel = NodePath("ColorRect/VBoxContainer/GameOverLabel")
+_levelLabel = NodePath("MarginContainer/HBoxContainer/LevelLabel")
 _scoreLabel = NodePath("MarginContainer/HBoxContainer/ScoreLabel")
 _gameOverSfx = NodePath("GameOverSound")
 _levelCompletedSfx = NodePath("YouWinSound")

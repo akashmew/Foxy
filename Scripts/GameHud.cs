@@ -7,6 +7,7 @@ public partial class GameHud : Control
 {
 	[Export] ColorRect _colorRect;
 	[Export] Label _gameOverLabel;
+	[Export] Label _levelLabel;
 	[Export] Label _scoreLabel;
 	[Export] AudioStreamPlayer _gameOverSfx;
 	[Export] AudioStreamPlayer _levelCompletedSfx;
@@ -17,6 +18,7 @@ public partial class GameHud : Control
 	private int totalPointsScored = 0;
 
 	private bool _canContinue = false;
+	private bool _didComplete = false;
 
 	public override void _UnhandledInput(InputEvent @event)
 	{
@@ -28,13 +30,23 @@ public partial class GameHud : Control
 
 		if (_canContinue && @event.IsActionPressed("shoot"))
 		{
-			GameManager.Instance.LoadMainScene();
+			if (_didComplete)
+			{
+				GameManager.ChangeToNextGameScene();
+			}
+			else
+			{
+				GameManager.Reload();
+			}
 		//SignalHub.CreateBullet(new Vector2(150, -50), new Vector2(1, 1), 50f, _bulletBase);
 
 		}
 	}
 	public override void _Ready()
 	{
+		GetTree().Paused = false;
+		_levelLabel.Text = $"LV:{GameManager.Instance.currentLevel+1}";
+		_scoreLabel.Text = ScoreManager.Instance.cachedScore.ToString("D4");
 		_colorRect.Hide();
 		SignalHub.Instance.OnLevelCompleted += OnLevelComplete;
 		SignalHub.Instance.OnPointsScored += OnPointsScored;
@@ -65,24 +77,28 @@ public partial class GameHud : Control
 		SignalHub.Instance.OnReduceLives -= ReduceLives ;
     }
 
-   
-    private void OnLevelComplete(bool isWin)
+
+	private void OnLevelComplete(bool isWin)
 	{
+
 		_colorRect.Show();
 		if (isWin)
 		{
 			_gameOverLabel.Text = "LevelCompleted";
 			_levelCompletedSfx.Play();
+			_didComplete = true;
 		}
 		else
 		{
 			_gameOverLabel.Text = "GameOver";
 			_gameOverSfx.Play();
+			_didComplete = false;
 		}
-		
-		
+
+
 		_gameOverTimer.Start();
 		GetTree().Paused = true;
+		
 
 	}
 	private void OnTimeOut()
@@ -91,9 +107,11 @@ public partial class GameHud : Control
     }
 
 	private void OnPointsScored(int points)
-    {
+	{
+		if (ScoreManager.Instance.cachedScore > 0) totalPointsScored = ScoreManager.Instance.cachedScore;
 		totalPointsScored += points;
 		_scoreLabel.Text = totalPointsScored.ToString("D4");
+		ScoreManager.Instance.cachedScore = totalPointsScored;
     }
 
 
