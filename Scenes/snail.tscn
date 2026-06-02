@@ -32,4 +32,4 @@ Shape = SubResource("RectangleShape2D_qjijy")
 
 [node name="RaycastDetection" type="RayCast2D" parent="." index="4" unique_id=786862877]
 position = Vector2(-22, 0)
-target_position = Vector2(0, 30)
+target_position = Vector2(0, 14.8)
